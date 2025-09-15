@@ -1,31 +1,9 @@
-# Welcome to CS201 🤓 
+# CS201 🤓 
 
 #### Class Location & Times
 🏫 Data Science Center, Tredtin Hall, Monday, Wednesday & Friday | 11:30–12:20 
 
-#### Office Hours
-
-🕥 Mondays 2:30–4:30
-
-🕥 Tuesdays 1:30–2:30 
-
-📆 By appointment, [sign up](https://calendar.app.google/eanj8A5keYwNhkdA7) or email amber.camp@chaminade.edu
-
-
-💻 I **strongly recommend attending office hours** for any of the following:
-
-- Troubleshooting code
-- Chatting about the theory behind the code
-- Help building your personal website in R
-- Chatting about opportunities in data science
-
-## 🛠️ Getting Started
-
-**Install R, RStudio, and Git**  
-   Follow the [installation guide](<link-to-guide-or-PDF>) before our first class. Stop **before** the "How to accept and submit assignments" section (don't do anything below that section).
-
 ## 📚 Free Online Textbook
-
 [R for Data Science (2e)](https://r4ds.hadley.nz)
 
 ## Course Schedule
@@ -48,20 +26,3 @@
 | 11/24–11/28  | Work on Final Projects ( Wed & Fri no class) |            |
 | 12/1–12/5  | Final Presentations |  |
 | 12/8–12/12  | Final Project Materials Due Thursday, 12/11 at **5:30pm** |
-
-## 💪 Stretch Menu
-
-Finished early? Want to explore more?  
-Check out our Stretch Menu for optional challenges and ideas to deepen your learning all semester long.
-
-- 💻 **Coding practice:** try solving problems multiple ways, write your own functions, and explore new R tools
-- 📊 **Visualization challenges:** make new plots, customize themes, or go beyond the plots we are doing in class (e.g., `plotly`)
-- 🧰 **Package exploration:** install and try packages beyond class (e.g., `lubridate` or `stringr`)
-- 🔗 **Git/GitHub power moves:** write better commit messages, try branching, open issues or pull requests
-- 🤝 **Community engagement:** help your neighbor, share datasets or code snippets, or demo your solution in class
-- 🧠 **Data curiosity:** explore new datasets, calculate new statistics, write mini-reports
-- 🏆 **Going beyond:** create dashboards or Quarto websites, contribute to open source, or connect what you learn to your major
-
-These are **optional** but highly encouraged!  
-Use them to practice, get creative, and challenge yourself while helping make our class more collaborative.
-
