@@ -182,13 +182,13 @@ In the code chunk below, plot `average_flipper_length` using `ggplot()` and `geo
 ggplot(data = average_flipper_length, aes(x = species, y = average_flipper_length, fill = species)) +
   geom_bar(stat = "identity")
   theme_bw() +
-    coord_flip() +
-    theme(legend.position = "none") +
+  theme(legend.position = "none") +
   labs(
     title = "Average Penguin Flipper Length by Species",
     x = "Species",
     y = "Average Flipper Length (mm)"
   )
+    
 ```
 
 ## Exercise 2
@@ -236,6 +236,21 @@ Create a dataframe that has the average culmen depth for each species. Then, mak
 average_culmen_depth <- penguins_data %>%
   group_by(species) %>%
   summarise((average_culmen_depth = mean(culmen_depth_mm, na.rm = TRUE)))
+
+view(average_culmen_depth)
+```
+
+```{r}
+ex4 <- ggplot(data = average_culmen_depth, aes(x = species, y = average_culmen_depth, fill = species)) +
+  geom_bar(stat = "identity") +
+  theme_bw() +
+  labs(
+    title = "Average Culmen Depth",
+    x = "Species",
+    y = "Average Culmen Depth (mm)"
+  )
+
+ggplotly(ex4)
 ```
 
 ## Push to GitHub!
