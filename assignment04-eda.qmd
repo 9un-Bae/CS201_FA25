@@ -1,0 +1,157 @@
+---
+title: "Assignment 4: Exploratory Data Analysis"
+author: "Amber Camp"
+date: "`r Sys.Date()`"
+format: html
+editor: visual
+---
+
+## Overview
+
+Due: **Sunday, 9/28 11:59pm**
+
+In this assignment, you will practice Exploratory Data Analysis (EDA) by making plots from a **Kaggle dataset of your choice**.
+
+You will submit **at least 4 different plot types**, with short written interpretations for each.
+
+Part 1 is worth a total of 1 point, and Part 2 is worth 4 points (1 point for each plot & interpretation).
+
+## Part 1: Get Your Data
+
+1.  Go to [Kaggle Datasets](https://www.kaggle.com/datasets), create an account, and choose a dataset that interests you. Ensure your data has:
+    1.  At least 4 variables
+    2.  At least one categorical and one continuous variable
+    3.  I recommend data that contains at least 50-100 observations
+    4.  Tip: Open the CSV on Kaggle first and skim the columns to check that it meets these requirements
+2.  Download the dataset as a CSV file.
+3.  Place the CSV in your class R project data folder.
+4.  Read it into R with `read_csv()`.
+
+## Libraries
+
+```{r}
+library(tidyverse)
+library(here)
+library(janitor)
+```
+
+## Data
+
+Read in the data and clean the column headers using janitor.
+
+```{r}
+ramen <- read_csv(here("data/ramen.csv"))
+
+ramen <- ramen %>%
+  clean_names()
+```
+
+### Describe The Data: Ramen
+
+**Data author:** Aleksey Bilogur
+
+**Description:** The Ramen Rater is a product review website for the ramen enthusiast with 2580 reviews to date.
+
+Each record in the dataset is a single ramen product review. Review numbers are contiguous: more recently reviewed ramen varieties have higher numbers. Brand, Variety (the product name), Country, and Style (Cup? Bowl? Tray?) are pretty self-explanatory. Stars indicate the ramen quality, as assessed by the reviewer, on a 5-point scale.
+
+<https://www.theramenrater.com/>
+
+<https://www.kaggle.com/datasets/residentmario/ramen-ratings?resource=download>
+
+### Preview your data
+
+Use some of the strategies you've learned in this class or picked up elsewhere to summarize and quickly explore your data.
+
+Observations rows
+
+```{r}
+nrow(ramen)
+```
+
+Variables columns
+
+```{r}
+dim(ramen)
+```
+
+### skimr: Quick overview
+
+```{r}
+skim_data <- skimr::skim(ramen)
+view(skim_data)
+```
+
+### Summary stats
+
+Before you make plots, you must also:
+
+-   Show basic summaries of your dataset, including:
+
+    -   `count()` for categorical variables (to see category frequencies)
+
+    -   `mean()`, `median()`, `sd()`, `min()`, `max()` for at least one numeric variable
+
+```{r}
+summary(ramen)
+```
+
+Write 2–3 sentences here: What do the category counts tell you? What does the numeric summary show about spread, center, or outliers?
+
+-   Most of the columns are categories, like brand, style, and country, which have lots of different values. The review numbers go from 1 to 2,580 and are pretty evenly spread out, so there aren’t really any outliers.
+
+## Part 2:
+
+Create **at least 4 plots**, each of a different type. At least one of your four plots must use different variables than the others.
+
+Each plot should have:
+
+-   A title and labeled axes
+
+-   A short interpretation (2-3 sentences) underneath
+
+Use the EDA Part 3 notes as your reference. Since this is an EDA assignment, your plots can be plain, but consider adding colors, themes, or interactivity for interpretability and visual appeal if you know how.
+
+### Bar Chart
+
+```{r}
+ggplot(ramen, aes(x = style)) +
+  geom_bar(fill = "skyblue", color = "black") +
+  theme_bw() +
+  labs(title = "Ramen Styles")
+```
+
+**Interpretation**: Shows which packaging styles (Cup, Pack, Tray) are most frequent. Pack is the most commonly taste tested.
+
+### Histogram
+
+```{r, warning = FALSE}
+ggplot(ramen, aes(x = as.numeric(stars))) +
+  geom_histogram(binwidth = 0.5, fill = "orange", color = "black") +
+  theme_bw() +
+  labs(title = "Star Ratings", x = "Stars", y = "Count")
+```
+
+**Interpretation**: Shows how ratings are spread. Whether most reviews are low, medium, or high. Majority are rated around 3.5 then 4.
+
+### Box Plot
+
+```{r, warning = FALSE}
+ggplot(ramen, aes(x = country, y = as.numeric(stars))) +
+  geom_boxplot(fill = "lightgreen") +
+  theme_bw() +
+  labs(title = "Country Ramen Ratings") +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1))
+```
+
+**Interpretation**: Compares variation in ratings across countries. Some countries like Cambodia, Japan, Malaysia, and Singapore have consistent high ratings, while others like Canada, China, UK show more mixed or lower ratings.
+
+### Scatter Plot
+
+```{r, warning = FALSE}
+ggplot(ramen, aes(x = review_number, y = as.numeric(stars))) +
+  geom_point(alpha = 0.5, color = "purple") +
+  theme_bw() +
+  labs(title = "Review Number vs. Rating", x = "Review Number", y = "Stars")
+```
+
+**Interpretation**: Checks if reviews changed over time if ratings trend higher or lower. The star ratings stay pretty consistent over time. Most reviews are clustered between 3 and 5 stars, with no clear upward or downward trend as review numbers increase.
