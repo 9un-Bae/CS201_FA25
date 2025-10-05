@@ -305,7 +305,7 @@ We will stop here!
 
 Which visualization type today felt most useful for you in spotting covariation, and why?
 
-Answer:
+Answer: **Boxplot because I could easily compare how the distribution of price changed across categories like color and clarity**
 
 ## For Fun
 
@@ -322,6 +322,4 @@ diamonds %>%
   mutate(color = fct_rev(color)) %>%
   ggplot(aes(x = color, y = cut)) +
   geom_tile(aes(fill = n))
-
-
 ```

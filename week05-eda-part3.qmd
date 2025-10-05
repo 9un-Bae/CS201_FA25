@@ -37,7 +37,7 @@ Use scatterplots to explore or compare the correlation between two continuous va
 
 ```{r}
 ggplot(diamonds, aes(x = carat, y = price)) +
-  geom_point()
+  geom_point(alpha = 0.1)
 ```
 
 #### Density plots
