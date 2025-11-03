@@ -16,8 +16,59 @@ penguins <- read_csv("data/penguins_lter.csv") %>%
 Instructions: Make a dashboard with 2 rows.
 
 Row 1 - contain 2 graphs showing any penguin data you'd like.Tow 2 - contain a table (use knitr::table and select if you'd like to narrow down the column).\
-Then customize the dashboard by adding colors, labels, interactivity, etc.\
+Then customize the dashboard by adding colors, labels, interactivity, etc.
+
 Optional - add text cards, value boxes, tabs, pages, etc.
+
+## Row 1
+
+```{r}
+plot1 <- ggplot(penguins, aes(x = flipper_length_mm, y = body_mass_g, color = species)) +
+geom_point(alpha = 0.8) +
+theme_bw() +
+scale_color_viridis_d() +
+labs(
+title = "Body Mass vs Flipper Length",
+subtitle = "Colored by species",
+x = "Flipper length (mm)",
+y = "Body mass (g)",
+color = "Species"
+)
+
+ggplotly(plot1)
+```
+
+```{r}
+plot2 <- ggplot(penguins, aes(x = culmen_depth_mm, fill = species)) +
+geom_histogram(position = "identity", alpha = 0.6, bins = 25) +
+theme_bw() +
+scale_fill_viridis_d() +
+labs(
+title = "Culmen Depth (Bill Depth) Distribution",
+subtitle = "Overlaid histograms by species",
+x = "Culmen depth (mm)",
+y = "Count",
+fill = "Species"
+)
+
+ggplotly(plot2)
+
+```
+
+## Row 2
+
+```{r}
+penguins_table <- penguins[, c("species", "island", "sex",
+"flipper_length_mm", "body_mass_g",
+"culmen_length_mm", "culmen_depth_mm")]
+
+knitr::kable(head(penguins_table, 15),
+caption = "Sample of Palmer Penguins")
+```
+
+```{r}
+
+```
 
 ```{r}
 
